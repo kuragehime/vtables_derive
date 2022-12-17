@@ -272,7 +272,7 @@ pub fn virtual_index(attr: TokenStream, item: TokenStream) -> TokenStream {
     let gen = quote! {
         #(#attrs)*
         #vis #sig {
-            unsafe { self.get_virtual::<fn(*const Self, #(#argtys),*) #retty>(#index)(self as *const Self, #(#args),*) }
+            unsafe { self.get_virtual::<extern "thiscall" fn(*const Self, #(#argtys),*) #retty>(#index)(self as *const Self, #(#args),*) }
         }
     };
 
